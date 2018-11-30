@@ -8,10 +8,21 @@
     "react-scripts": "2.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "cross-env react-scripts start",
+    "build": "cross-env react-scripts build",
+    "test": "cross-env react-scripts test",
+    "eject": "cross-env react-scripts eject"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,json,css,scss,md}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -21,5 +32,12 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "husky": "^1.2.0",
+    "lint-staged": "^8.1.0",
+    "node-sass": "^4.10.0",
+    "prettier": "^1.15.3"
+  }
 }
