@@ -1,0 +1,55 @@
+@import '~styles/variables';
+
+.App {
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100vh;
+  padding: 20px;
+  max-width: 500px;
+
+  &__title,
+  &__sub-title {
+    color: $richBlack;
+  }
+
+  &__title {
+    font-size: 32px;
+  }
+
+  &__sub-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 20px;
+  }
+}
+
+.Form {
+  margin-top: 40px;
+}
+
+.Input {
+  background-color: $platinum;
+  border: none;
+  padding: 20px 10px;
+  width: 100%;
+
+  &::placeholder {
+    color: $quickSilver;
+    font-style: italic;
+  }
+}
+
+.Button {
+  background-color: $ballBlue;
+  color: $whiteSmoke;
+  font-weight: 700;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  text-transform: uppercase;
+  width: 100%;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
