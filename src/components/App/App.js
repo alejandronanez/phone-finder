@@ -4,7 +4,8 @@ import 'components/App/App.scss';
 
 class App extends Component {
   state = {
-    phoneInformation: {}
+    phoneInformation: {},
+    phoneNumber: ''
   };
 
   handleFormSubmission = e => {
@@ -23,6 +24,10 @@ class App extends Component {
       });
   };
 
+  handleOnChange = e => {
+    this.setState({ phoneNumber: e.target.value });
+  };
+
   render() {
     return (
       <main className="App">
@@ -36,6 +41,8 @@ class App extends Component {
             className="Input"
             type="text"
             placeholder="Type your number"
+            onChange={this.handleOnChange}
+            value={this.state.phoneNumber}
             required
           />
           <button className="Button">Find phone information</button>
