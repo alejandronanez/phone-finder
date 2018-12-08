@@ -1,4 +1,5 @@
 import React from 'react';
+import isEmpty from 'lodash.isempty';
 import './App.scss';
 
 class App extends React.Component {
@@ -10,16 +11,15 @@ class App extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    /**
-     * Fetch data here
-     * To access the API key => process.env.REACT_APP_NUMVERIFY_KEY
-     * To access what's on the phone input => You should check the component's local state
-     * The URL: http://apilayer.net/api/validate?access_key=API_KEY&number=the-number&format=1
-     *
-     * How to:
-     *
-     * fetch(theUrl).then(response => response.json()).then(formattedData => // Update the state with it)
-     */
+    fetch(
+      `http://apilayer.net/api/validate?access_key=${
+        process.env.REACT_APP_NUMVERIFY_KEY
+      }&number=${this.state.phoneNumber}&format=1`
+    )
+      .then(response => response.json())
+      .then(response => {
+        this.setState({ phoneInformation: response });
+      });
   };
 
   handleInputChange = e => {
@@ -45,23 +45,29 @@ class App extends React.Component {
           />
           <button className="Button">Find phone information</button>
         </form>
-        <ul className="Result">
-          <li>
-            <strong>Valid: </strong>
-            <span role="img" aria-label="Phone valid">
-              ✅
-            </span>
-          </li>
-          <li>
-            <strong>International format: </strong>
-          </li>
-          <li>
-            <strong>Country: </strong>
-          </li>
-          <li>
-            <strong>Location: </strong>
-          </li>
-        </ul>
+        {/* Verify if this.state.phoneInformation is not empty, if true, show the Result */}
+        {true && (
+          <ul className="Result">
+            <li>
+              <strong>Valid: </strong>
+              <span role="img" aria-label="Phone valid">
+                {/* Bonus points: Show  ✅ if it is valid, or show ❌ if it is not */}
+              </span>
+            </li>
+            <li>
+              <strong>International format: </strong>
+              {/* Show international_format */}
+            </li>
+            <li>
+              <strong>Country: </strong>
+              {/* Show country */}
+            </li>
+            <li>
+              <strong>Location: </strong>
+              {/* Show location */}
+            </li>
+          </ul>
+        )}
       </main>
     );
   }
