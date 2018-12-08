@@ -1,6 +1,12 @@
 import React from 'react';
 import './App.scss';
 
+function handleSubmit(e) {
+  e.preventDefault();
+
+  console.log('submitting');
+}
+
 function App() {
   return (
     <main className="App">
@@ -8,7 +14,7 @@ function App() {
       <h2 className="App__sub-title">
         All the information you need about any phone number, just one click away
       </h2>
-      <form className="Form">
+      <form className="Form" onSubmit={handleSubmit}>
         <input
           className="Input"
           type="text"
